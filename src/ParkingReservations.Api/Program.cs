@@ -1,4 +1,3 @@
-using Asp.Versioning;
 using Microsoft.OpenApi.Models;
 using Paul.ParkingReservations.Api.Extensions;
 
@@ -10,17 +9,7 @@ namespace Paul.ParkingReservations.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddApiVersioning(options =>
-            {
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.ReportApiVersions = true;
-            }).AddApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
-            });
-
+            builder.Services.IncludeApiVersioning();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
@@ -35,10 +24,11 @@ namespace Paul.ParkingReservations.Api
 
             if (app.Environment.IsDevelopment())
             {
+                ////https://localhost:7235/index.html
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Template");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parking Reservation API v1 ");
                     c.RoutePrefix = string.Empty;
                 });
             }

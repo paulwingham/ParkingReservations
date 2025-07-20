@@ -15,39 +15,39 @@ public class DapperProvider : IDapperProvider
         _sqliteConnectionProvider = sqliteConnectionProvider;
     }
 
-   //// public async Task<List<ParkingSlotsDto>> GetAllAvailableParkingSlotsByDateRange(DateTime startDate, DateTime endDate)
-   //// {
-   ////     _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
-   ////     var connection = _sqliteConnectionProvider.GetSqliteConnection();
+    //// public async Task<List<ParkingSlotsDto>> GetAllAvailableParkingSlotsByDateRange(DateTime startDate, DateTime endDate)
+    //// {
+    ////     _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+    ////     var connection = _sqliteConnectionProvider.GetSqliteConnection();
 
-   ////     var queryString = @"
-   ////         WITH DateRange AS (
-   ////             SELECT CAST(@StartDate AS DATE) AS dateofbooking
-   ////             UNION ALL
-   ////             SELECT DATE(DateOfBooking, '+1 day')
-   ////             FROM DateRange
-   ////             WHERE DateOfBooking < @EndDate
-   ////         ),
-   ////         Booked AS (
-   ////             SELECT DateOfBooking, ParkingSpace_Id
-   ////             FROM booking
-   ////             WHERE DateOfBooking BETWEEN @StartDate AND @EndDate
-   ////         )
-   ////         SELECT dr.DateOfBooking, ps.ParkingSpaceId, pst.structurename
-   ////         FROM DateRange dr
-   ////         CROSS JOIN parkingspace ps
-   ////         LEFT JOIN Booked b ON b.DateOfBooking = dr.DateOfBooking AND b.parkingspace_id = ps.parkingspaceid
-			////LEFT JOIN parkingstructure pst ON ps.parkingstructureid = pst.parkingstructure_id
-   ////         WHERE b.ParkingSpace_Id IS NULL
-   ////         ORDER BY dr.DateOfBooking, ps.ParkingSpaceId";
+    ////     var queryString = @"
+    ////         WITH DateRange AS (
+    ////             SELECT CAST(@StartDate AS DATE) AS dateofbooking
+    ////             UNION ALL
+    ////             SELECT DATE(DateOfBooking, '+1 day')
+    ////             FROM DateRange
+    ////             WHERE DateOfBooking < @EndDate
+    ////         ),
+    ////         Booked AS (
+    ////             SELECT DateOfBooking, ParkingSpace_Id
+    ////             FROM booking
+    ////             WHERE DateOfBooking BETWEEN @StartDate AND @EndDate
+    ////         )
+    ////         SELECT dr.DateOfBooking, ps.ParkingSpaceId, pst.structurename
+    ////         FROM DateRange dr
+    ////         CROSS JOIN parkingspace ps
+    ////         LEFT JOIN Booked b ON b.DateOfBooking = dr.DateOfBooking AND b.parkingspace_id = ps.parkingspaceid
+    ////LEFT JOIN parkingstructure pst ON ps.parkingstructureid = pst.parkingstructure_id
+    ////         WHERE b.ParkingSpace_Id IS NULL
+    ////         ORDER BY dr.DateOfBooking, ps.ParkingSpaceId";
 
-   ////     var availableSlots = await connection.QueryAsync<ParkingSlotsDto>(queryString, new { StartDate = startDate.Date, EndDate = endDate.Date });
-   ////     return availableSlots.ToList();
-   //// }
+    ////     var availableSlots = await connection.QueryAsync<ParkingSlotsDto>(queryString, new { StartDate = startDate.Date, EndDate = endDate.Date });
+    ////     return availableSlots.ToList();
+    //// }
 
     public async Task<List<ParkingSlotsDto>> GetBookedParkingSlotsByDateRange(DateTime startDate, DateTime endDate)
     {
-        _logger.LogDebug($"{ CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{ CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
 
         var queryString1 = $"SELECT parkingspace_id, dateofbooking FROM booking WHERE dateofbooking >= @StartDate AND dateofbooking <= @EndDate ORDER BY dateofbooking DESC";
@@ -64,7 +64,7 @@ public class DapperProvider : IDapperProvider
 
     public async Task<IEnumerable<ParkingSpaceDto>> GetAllParkingSpaces()
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
 
         var queryString = $"SELECT p.parkingspaceid, ps.structurename FROM parkingspace AS p INNER JOIN parkingstructure AS ps ON p.parkingstructureid = ps.parkingstructure_id";
@@ -75,7 +75,7 @@ public class DapperProvider : IDapperProvider
 
     public async Task<int> InsertBookingAsync(BookingDto bookingDto)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
 
         //// this has been done  like this, so I don't have to include the parkingstructureid on the BookingDto
@@ -99,7 +99,7 @@ public class DapperProvider : IDapperProvider
 
     public async Task<IEnumerable<ParkingStructureDto>> GetAllParkingStructures()
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
         var queryString = $"SELECT parkingstructure_id, structurename FROM parkingstructure";
         var parkingStructureDtos = await connection.QueryAsync<ParkingStructureDto>(queryString);
@@ -109,7 +109,7 @@ public class DapperProvider : IDapperProvider
 
     public async Task<int> DeleteBookingByIdAsync(int id)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
         var queryString = $"DELETE FROM Product WHERE bookingid = {id}";
 
@@ -118,7 +118,7 @@ public class DapperProvider : IDapperProvider
 
     public async Task<UserDto> GetUserDetails()
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         var userDto = new UserDto("ATH", new ContactDto(1, "Alice", "Thompson", 1), 1);
 
@@ -127,7 +127,7 @@ public class DapperProvider : IDapperProvider
 
     public async Task<ContactDto> GetContactById(int id)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
         var queryString = $"SELECT * FROM contact WHERE contactid={id}";
         var contactDto = await connection.QueryAsync<ContactDto>(queryString);
@@ -137,7 +137,7 @@ public class DapperProvider : IDapperProvider
 
     private async Task<int> GetParkingStructureId(int id)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
         var queryString = $"SELECT parkingstructureid FROM parkingspace WHERE parkingspaceid={id}";
         var parkingstructureid = await connection.QueryAsync<int>(queryString);
@@ -147,7 +147,7 @@ public class DapperProvider : IDapperProvider
 
     private async Task<bool> DuplicateParkingSpaceBooking(BookingDto bookingDto, int parkingStructureId)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
         var connection = _sqliteConnectionProvider.GetSqliteConnection();
 
         var queryString = $"SELECT bookingid FROM booking WHERE parkingspace_id=@ParkingSpaceId AND parkingstructure_id=@ParkingStructureId AND dateofbooking=@DateOfBooking";

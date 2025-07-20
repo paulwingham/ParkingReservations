@@ -17,7 +17,7 @@ public class LoginService : ILoginService
 
     public async Task<UserDto> LoginAsync()
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         var userDto = await _dapperProvider.GetUserDetails();
 
@@ -26,7 +26,7 @@ public class LoginService : ILoginService
 
     public async Task<ContactDto> GetContactByIdAsync(int id)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         var contactDto = await _dapperProvider.GetContactById(id);
 

@@ -17,7 +17,7 @@ public class BookingService : IBookingService
 
     public async Task<List<ParkingSlotsDto>> GetAvailableParkingSlotsByDateRangeAsync(DateTime startDate, DateTime endDate)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         var bookedSpacesInYourDateRange = await _dapperProvider.GetBookedParkingSlotsByDateRange(startDate, endDate);
         var allParkingSpaces = await _dapperProvider.GetAllParkingSpaces();
@@ -39,7 +39,7 @@ public class BookingService : IBookingService
 
     ////public async Task<List<ParkingSlotsDto>> GetAvailableParkingSlotsByDateRangeUsingSingleSqlStatementAsync(DateTime startDate, DateTime endDate)
     ////{
-    ////    _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+    ////    _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
     ////    var availableSlots = await _dapperProvider.GetAllAvailableParkingSlotsByDateRange(startDate, endDate);
 
@@ -48,7 +48,7 @@ public class BookingService : IBookingService
 
     public async Task<BookingDto> InsertBookingAsync(BookingDto bookingDto)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         bookingDto.BookingId = await _dapperProvider.InsertBookingAsync(bookingDto);
 
@@ -57,7 +57,7 @@ public class BookingService : IBookingService
 
     public async Task<int> DeleteBookingByIdAsync(int id)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         return await _dapperProvider.DeleteBookingByIdAsync(id);
     }
