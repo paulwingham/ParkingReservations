@@ -1,16 +1,11 @@
-﻿using System.Net;
-using Asp.Versioning;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using Paul.ParkingReservations.Core.Services;
 using Paul.ParkingReservations.Dto;
 using Paul.ParkingReservations.Dto.DomainSettings;
 
 namespace Paul.ParkingReservations.Api.Controllers.V1_0;
 
-[Route("api/[controller]")]
-[ApiVersion("1.0")]
 public class BookingController : BaseApiController
 {
     private readonly ILogger<BookingController> _logger;
@@ -24,13 +19,26 @@ public class BookingController : BaseApiController
         _parkingReservationsAppConfigSettings = parkingReservationsAppConfigSettings.Value;
     }
 
+    /// <summary>
+    /// Gets available parking slots for a given date range.
+    /// </summary>
+    /// <param name="startDate">The start date of the range.</param>
+    /// <param name="endDate">The end date of the range.</param>
+    /// <returns>List of available parking slots.</returns>
     [ProducesResponseType(typeof(List<ParkingSlotsDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Produces("application/json", "text/json")]
     [HttpGet]
     [Route("Get")]
     public async Task<IActionResult> GetAvailableParkingSlotsByDateRange(DateTime startDate, DateTime endDate)
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+
+        if (startDate == default || endDate == default)
+        {
+            _logger.LogWarning($"{CurrentFunctionMethod.GetCaller(this)} - Start date or end date is not provided");
+            return BadRequest("Start date or end date cannot be empty.");
+        }
 
         try
         {
@@ -38,22 +46,32 @@ public class BookingController : BaseApiController
             if (availableParkingSlots == null)
             {
                 _logger.LogError($"{CurrentFunctionMethod.GetCaller(this)} - No Available parking slots found for date range" + startDate + " - " + endDate);
-                return BadRequest();
+                return BadRequest($"No Available parking slots found for date range {startDate} + {endDate}");
             }
 
             return Ok(availableParkingSlots);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"{CurrentFunctionMethod.GetCaller(this)} - Error occurred while getting available parking slots");
-            return BadRequest();
+            _logger.LogError(ex, $"{CurrentFunctionMethod.GetCaller(this)} - {ex}");
+            return BadRequest(new { error = ex.Message });
         }
     }
 
+    /// <summary>
+    /// Creates a new parking booking.
+    /// </summary>
+    /// <param name="bookingDto">The booking details.</param>
+    /// <returns>The created booking.</returns>
+    [ProducesResponseType(typeof(BookingDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Consumes("application/json", "text/json")]
     [HttpPost]
     [Route("Post")]
     public async Task<IActionResult> Post(BookingDto bookingDto)
     {
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+
         try
         {
             await _bookingService.InsertBookingAsync(bookingDto);
@@ -62,8 +80,8 @@ public class BookingController : BaseApiController
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"{CurrentFunctionMethod.GetCaller(this)} - Error occurred while posting a booking");
-            return BadRequest(ex);
+            _logger.LogError(ex, $"{CurrentFunctionMethod.GetCaller(this)} - {ex}");
+            return BadRequest(new { error = ex.Message });
         }
     }
 }

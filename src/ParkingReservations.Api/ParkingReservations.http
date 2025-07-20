@@ -1,6 +1,38 @@
 @ParkingReservations_HostAddress = http://localhost:5115
 
-GET {{ParkingReservations_HostAddress}}/customer/
+GET {{ParkingReservations_HostAddress}}/api/v1/parkingstructure/get
+Accept: application/json
+
+###
+
+GET {{ParkingReservations_HostAddress}}/api/v1/booking/get
+Accept: application/json
+
+###
+
+GET {{ParkingReservations_HostAddress}}/api/v1/booking/get?startDate=2025-07-20&endDate=2025-07-21
+Accept: application/json
+
+###
+
+POST {{ParkingReservations_HostAddress}}/api/v1/booking/post
+Content-Type: application/json
+Accept-Language: en-GB,
+{
+    "BookingId": 0,
+    "Bookee_Id": 1,
+    "DateOfBooking": "2025-07-20",
+    "ParkingSpace_Id": "6"
+}
+###
+
+
+GET {{ParkingReservations_HostAddress}}/api/v1/login/get
+Accept: application/json
+
+###
+
+GET {{ParkingReservations_HostAddress}}/api/v1/login/get?username=admin&password=admin
 Accept: application/json
 
 ###

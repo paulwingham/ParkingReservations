@@ -11,7 +11,17 @@ It's location is specified in appsettings.json here:
 You can use a SQLite browser to view the contents of the database.
 
 ## Login and Authentication
-I was unsure what to do about this, so I have a LoginController and try to return a JWT token, but I have not used security for the endpoints.
+I was unsure what to do about this, so I have a LoginController that returns a JWT token, and a UserDto object, but I have not used security for the endpoints.
 
 ## Unit Tests
 I have just provided unit tests for the Core project Service folder methods, more would be provided for full test coverage.
+
+
+## Testing - please use .http files
+I have provided easy to run tests using the ParkingReservations.http file. Some of these end showing error messages, others return data as expected.
+
+Please note I have added a new ParkingStructure to the database, called "Horsham", and added one parking space to this structure. The tests pick up available parking spaces for both structures.
+This was done to prove the code is extensible to multiple parking structures.
+
+
+

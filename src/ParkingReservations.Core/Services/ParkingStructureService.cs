@@ -17,7 +17,7 @@ public class ParkingStructureService : IParkingStructureService
 
     public async Task<IEnumerable<ParkingStructureDto>> GetAllAsync()
     {
-        _logger.LogDebug($"{CurrentFunctionMethod.GetCaller(this)} - Started");
+        _logger.LogInformation($"{CurrentFunctionMethod.GetCaller(this)} - Started");
 
         var parkingStructureDtos = await _dapperProvider.GetAllParkingStructures();
 
