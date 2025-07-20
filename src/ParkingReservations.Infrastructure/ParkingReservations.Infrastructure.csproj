@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <RootNamespace>Paul.ParkingReservations.Infrastructure</RootNamespace>
+	  <CodeAnalysisRuleSet>..\..\stylecop\stylecop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\stylecop\stylecop.json" Link="Properties\stylecop.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Dapper" Version="2.1.66" />
+	  <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+	  <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+	  <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ParkingReservations.Dto\ParkingReservations.Dto.csproj" />
+	</ItemGroup>
+
+</Project>

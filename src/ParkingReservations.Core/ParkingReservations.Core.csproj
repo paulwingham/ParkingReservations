@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>Paul.ParkingReservations.Core</RootNamespace>
+		<CodeAnalysisRuleSet>..\..\stylecop\stylecop.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\stylecop\stylecop.json" Link="Properties\stylecop.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ParkingReservations.Dto\ParkingReservations.Dto.csproj" />
+	  <ProjectReference Include="..\ParkingReservations.Infrastructure\ParkingReservations.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

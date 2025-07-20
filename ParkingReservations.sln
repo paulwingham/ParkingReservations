@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{48163564-E598-4A7E-A68E-C078A6F76383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingReservations.Api", "src\ParkingReservations.Api\ParkingReservations.Api.csproj", "{1608AFE2-67A2-4E5F-3877-401D8568C3F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingReservations.Core", "src\ParkingReservations.Core\ParkingReservations.Core.csproj", "{CE23359A-4C9E-49C3-9967-820FA5BC9AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingReservations.Infrastructure", "src\ParkingReservations.Infrastructure\ParkingReservations.Infrastructure.csproj", "{B80953EF-E590-495D-94AA-9B44BDB52FD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingReservations.Core.UnitTests", "tests\ParkingReservations.Core.UnitTests\ParkingReservations.Core.UnitTests.csproj", "{309548ED-0C82-4EED-B4B2-E90FE89BFA68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingReservations.Dto", "src\ParkingReservations.Dto\ParkingReservations.Dto.csproj", "{04741B29-9A99-C790-CEBC-620EFB1186C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1608AFE2-67A2-4E5F-3877-401D8568C3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1608AFE2-67A2-4E5F-3877-401D8568C3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1608AFE2-67A2-4E5F-3877-401D8568C3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1608AFE2-67A2-4E5F-3877-401D8568C3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE23359A-4C9E-49C3-9967-820FA5BC9AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE23359A-4C9E-49C3-9967-820FA5BC9AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE23359A-4C9E-49C3-9967-820FA5BC9AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE23359A-4C9E-49C3-9967-820FA5BC9AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B80953EF-E590-495D-94AA-9B44BDB52FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B80953EF-E590-495D-94AA-9B44BDB52FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B80953EF-E590-495D-94AA-9B44BDB52FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B80953EF-E590-495D-94AA-9B44BDB52FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{309548ED-0C82-4EED-B4B2-E90FE89BFA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309548ED-0C82-4EED-B4B2-E90FE89BFA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309548ED-0C82-4EED-B4B2-E90FE89BFA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309548ED-0C82-4EED-B4B2-E90FE89BFA68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04741B29-9A99-C790-CEBC-620EFB1186C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04741B29-9A99-C790-CEBC-620EFB1186C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04741B29-9A99-C790-CEBC-620EFB1186C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04741B29-9A99-C790-CEBC-620EFB1186C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1608AFE2-67A2-4E5F-3877-401D8568C3F7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{CE23359A-4C9E-49C3-9967-820FA5BC9AD2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B80953EF-E590-495D-94AA-9B44BDB52FD0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{309548ED-0C82-4EED-B4B2-E90FE89BFA68} = {48163564-E598-4A7E-A68E-C078A6F76383}
+		{04741B29-9A99-C790-CEBC-620EFB1186C8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7191B603-6D48-433F-BB26-A441896CAF99}
+	EndGlobalSection
+EndGlobal

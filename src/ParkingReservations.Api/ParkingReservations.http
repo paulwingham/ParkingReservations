@@ -1,0 +1,6 @@
+@ParkingReservations_HostAddress = http://localhost:5115
+
+GET {{ParkingReservations_HostAddress}}/customer/
+Accept: application/json
+
+###
